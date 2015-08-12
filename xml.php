@@ -43,7 +43,7 @@ class xml implements Iterator, ArrayAccess
 	public function __toString()
 	{
 		return (
-			isset($this->declaration)
+			isset($this->declaration) && $this->declaration !== ''
 			?
 			"<?{$this->declaration}?>"
 			:
@@ -68,7 +68,7 @@ class xml implements Iterator, ArrayAccess
 				{
 					case 'array':
 						$xml .= "<{$tag}{$attributes}>";
-							if($this->is_assoc($data))
+							if( ! $this->is_assoc($data))
 							{
 								foreach($data as $child)
 								{
